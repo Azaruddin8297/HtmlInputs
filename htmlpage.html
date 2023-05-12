@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+    <title>Basic input types</title>
+    <link rel="stylesheet" href="InputForm.css">
+</head>
+<body>
+    <form>
+        <header class="headerContainer"><h1>HTML FORM INPUT FIELD</h1></header>
+        <div>
+            <label for ="text">Name</label>
+            <input type="text" id="text" name="text">
+            <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for ="pwd">Password</label>
+            <input type="password" id="pwd" name="pwd">
+            <error-output class="Password-error" for="pwd"></error-output>
+        </div>
+        <div>
+            <label for ="email">Email input:</label>
+            <input type="email" id="email" name="email">
+            <error-output class="Email-error" for="email"></error-output>
+        </div>
+        <div>
+            <label for ="url">url input type:</label>
+            <input type="url" id="url" name="url">
+        </div>
+        <div>
+            <label for ="num">Number</label>
+            <input type="number" id="num" name="num">
+        </div>
+        <div>
+            <label for ="tel">Telephone</label>
+            <input type="tel" id="tel" name="tel">
+        </div> 
+        <div>
+            <label for ="search">search</label>
+            <input type="search" id="search" name="Search">
+        </div>
+        <div class = "nativeDateTimePicker">
+            <label for ="party">Choose a date and time:</label>
+            <input type="datetime-local" id="party" name="Bday">
+         </div>
+         <div>
+            <label for ="salary">Choose your salary:</label>
+            <input type="range" id="salary" name="salary" min="30000" max="100000" step="1000" value="50000">
+            <output class="salary-output" for="salary">50000<output>
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+        <script>
+
+            //for name validation
+            const text = document.querySelector('#text');
+            const textError= document.querySelector('.text-error');
+            text.addEventListener('input',function()
+            {
+                let nameRegex=RegExp('^[A-Z]{1}[a-z]{2,}$')
+                if(nameRegex.test(text.value))
+                textError.textContent="";
+                else
+                textError.textContent="Name is incorrect";
+            }
+            )
+        
+            const salary=document.querySelector('#salary');
+            const output=document.querySelector('.salary-output');
+            salary.addEventListener('input',function()
+            {
+              output.textContent=salary.value;
+            }
+            )
+            //for email validation
+            const email =document.querySelector('#email');
+            const emailError =document.querySelector('.email-error');
+            email.addEventListener('input',function()
+            {
+                let emailRegex=RegexExp('^([a-zA-Z0-9]+[_\\-\\+\\.]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,}){1,2}$')
+                if(emailRegex.test(email.value))
+                emailError.textContent="";
+                else
+                emailError.textContent = "Email is incorrect";
+            }
+            )
+
+            //for number validation
+            const phoneNumber = document.querySelector('#tel');
+            const phoneError = document.querySelector('.phone-error');
+            email.addEventListener('input',function()
+            {
+                let phoneRegex =RegexExp('^[0-9]{2} [0-9]{10}$')
+                if(phoneRegex.test(phoneNumber.value))
+                phoneError.textContent="";
+                else
+                phoneError.textContent="PhoneNumber is incorrect";
+                
+            }
+            )
+
+            
+            // Password validation
+            const password = document.querySelector('#pwd');
+            const passwordError = document.querySelector('.Password-error');
+            password.addEventListener('input', function() {
+                let passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=?]).{8,}$/;
+                if (passwordRegex.test(password.value))
+                    passwordError.textContent = "";
+                else
+                    passwordError.textContent = "Password must have a minimum of 8 characters, at least 1 uppercase letter, 1 numeric digit, and 1 special character";
+            });  
+
+
+
+ </script>
+    </form>
+    </body>
+    </html>
